@@ -7,14 +7,14 @@ import {
     updateCourse,
     addLecturesToCourseById
 } from "../controllers/course.controller.js";
-import { authorizedRoles, isLoggedIn } from "../middlewares/auth.middleware.js";
+import { authorizedRoles, authorizedSubscriber, isLoggedIn } from "../middlewares/auth.middleware.js";
 import upload from "../middlewares/multer.middleware.js";
 
 const router = new Router();
 
 router
     .route("/")
-    .get(isLoggedIn, getAllCourses)
+    .get(isLoggedIn,authorizedSubscriber, getAllCourses)
     .post(isLoggedIn, authorizedRoles("ADMIN"), upload.single("thumbnail"), createCourse);
 router
     .route("/:id")

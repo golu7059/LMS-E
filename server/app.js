@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import connectionToDB from './config/dbConnection.js';
 import userRouter from './routes/user.route.js';
 import courseRouter from './routes/course.route.js'
+import paymentRouter from './routes/payment.route.js'
 import errorMiddleware from './middlewares/error.middleware.js';
 
 const app = express();
@@ -26,6 +27,7 @@ app.use('/ping', (req, res) => {
 });
 app.use('/api/auth/', userRouter);
 app.use('/api/auth/courses', courseRouter);
+app.use('/api/auth/payments',paymentRouter)
 
 app.use(morgan('dev'));
 app.all('*', (req, res) => {
