@@ -8,11 +8,12 @@ import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Toaster } from "react-hot-toast";
-import Provider from 'react-redux'
+import {Provider} from 'react-redux'
 import { BrowserRouter} from "react-router-dom"; // Better routing all over pages
+import store from "./Redux/store.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-   <Provider>
+   <Provider store={store}>
       <BrowserRouter>
          <App />
          <Toaster />
