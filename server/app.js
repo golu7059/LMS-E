@@ -14,20 +14,18 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
-app.use(cors()); // This is for all URLs. Use the below line for specific URLs in production
-// app.use(cors({
-//     origin: [process.env.FRONTEND_URL],
-//     credentials: true
-// }));
+
+app.use(cors({
+    origin: [process.env.FRONTEND_URL],
+    credentials: true
+}));
 
 connectionToDB();
 
-app.use('/ping', (req, res) => {
-  res.send('Pong');
-});
+
 app.use('/api/auth/', userRouter);
-app.use('/api/auth/courses', courseRouter);
-app.use('/api/auth/payments',paymentRouter)
+app.use('/api/courses', courseRouter);
+app.use('/api/payments',paymentRouter)
 
 app.use(morgan('dev'));
 app.all('*', (req, res) => {

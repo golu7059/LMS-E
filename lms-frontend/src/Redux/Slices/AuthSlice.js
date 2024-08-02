@@ -8,9 +8,9 @@ const initialState = {
     data: localStorage.getItem('data') != undefined ? JSON.parse(localStorage.getItem('data')) : {}
 };
 
-export const createAccount = createAsyncThunk("/auth/signup", async (data) => {
+export const createAccount = createAsyncThunk("/auth/register", async (data) => {
     try {
-        const res = axiosInstance.post("user/register", data);
+        const res = axiosInstance.post("auth/register", data);
         toast.promise(res, {
             loading: "Wait! creating your account",
             success: (data) => {
@@ -24,9 +24,9 @@ export const createAccount = createAsyncThunk("/auth/signup", async (data) => {
     }
 })
 
-export const login = createAsyncThunk("/auth/login", async (data) => {
+export const login = createAsyncThunk("/user/login", async (data) => {
     try {
-        const res = axiosInstance.post("user/login", data);
+        const res = axiosInstance.post("auth/login", data);
         toast.promise(res, {
             loading: "Wait! authentication in progress...",
             success: (data) => {
@@ -40,9 +40,9 @@ export const login = createAsyncThunk("/auth/login", async (data) => {
     }
 });
 
-export const logout = createAsyncThunk("/auth/logout", async () => {
+export const logout = createAsyncThunk("/user/logout", async () => {
     try {
-        const res = axiosInstance.post("user/logout");
+        const res = axiosInstance.get("auth/logout");
         toast.promise(res, {
             loading: "Wait! logout in progress...",
             success: (data) => {
@@ -58,7 +58,7 @@ export const logout = createAsyncThunk("/auth/logout", async () => {
 
 export const updateProfile = createAsyncThunk("/user/update/profile", async (data) => {
     try {
-        const res = axiosInstance.put(`user/update/${data[0]}`, data[1]);
+        const res = axiosInstance.put(`auth/update/${data[0]}`, data[1]);
         toast.promise(res, {
             loading: "Wait! profile update in progress...",
             success: (data) => {
@@ -74,7 +74,7 @@ export const updateProfile = createAsyncThunk("/user/update/profile", async (dat
 
 export const getUserData = createAsyncThunk("/user/details", async () => {
     try {
-        const res = axiosInstance.get("user/me");
+        const res = axiosInstance.get("auth/me");
         return (await res).data;
     } catch(error) {
         toast.error(error.message);

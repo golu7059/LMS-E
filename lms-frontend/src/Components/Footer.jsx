@@ -10,17 +10,17 @@ function Footer() {
                         Copyright{year} | All rights reserved 
                     </section>
                     <section className='flex items-center justify-center gap-5 text-2xl text-white'>
-                    <a className='hover:text-yellow-500 transition-all ease-in-out duration-300'>
-                        <BsFacebook/>
+                    <a href='https://www.facebook.com/abhiraj7059/' target='_blank' rel='noopener noreferrer' className='hover:text-yellow-500 transition-all ease-in-out duration-300'>
+                        <BsFacebook />
                     </a>
-                    <a className='hover:text-yellow-500 transition-all ease-in-out duration-300'>
-                        <BsInstagram/>
+                    <a href='https://www.instagram.com/golu__kr__singh?igsh=MXR4djdyd2JkNXJwcg%3D%3D&utm_source=qr' target='_blank' rel='noopener noreferrer' className='hover:text-yellow-500 transition-all ease-in-out duration-300'>
+                        <BsInstagram />
                     </a>
-                    <a className='hover:text-yellow-500 transition-all ease-in-out duration-300'>
-                        <BsLinkedin/>
+                    <a href='https://www.linkedin.com/in/golu-kumar-7079b5246/' target='_blank' rel='noopener noreferrer' className='hover:text-yellow-500 transition-all ease-in-out duration-300'>
+                        <BsLinkedin />
                     </a>
-                    <a className='hover:text-yellow-500 transition-all ease-in-out duration-300'>
-                        <BsTwitterX/>
+                    <a href='https://x.com/golu7059' target='_blank' rel='noopener noreferrer' className='hover:text-yellow-500 transition-all ease-in-out duration-300'>
+                        <BsTwitterX />
                     </a>
                     </section>
             </footer>

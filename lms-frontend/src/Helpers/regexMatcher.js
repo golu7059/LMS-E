@@ -1,7 +1,13 @@
 export function isEmail(string) {
-    return string.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+  return emailRegex.test(string);
 }
 
 export function isValidPassword(string) {
-    return string.match(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/);
+    const hasNumber = /[0-9]/.test(string);
+    const hasSpecialChar = /[!@#$%^&*]/.test(string);
+    const isValidLength = string.length >= 6 && string.length <= 16;
+    const isOnlyValidChars = /^[a-zA-Z0-9!@#$%^&*]+$/.test(string);
+
+    return hasNumber && hasSpecialChar && isValidLength && isOnlyValidChars;
 }

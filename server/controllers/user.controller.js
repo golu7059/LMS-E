@@ -28,10 +28,13 @@ const register = async (req, res, next) => {
       fullName,
       email,
       password,
-      //   avatar: {
-      //     public_id: email,
-      //     secure_url: "",
-      //   },
+      avatar: req.file ? {
+        public_id: req.file.filename,
+        secure_url: req.file.path,
+      } : {
+        public_id: email,
+        secure_url: "https://res.cloudinary.com/dmcur395y/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1720752792/samples/cloudinary-icon.png",
+      },
     });
 
     if (!user) {
@@ -45,11 +48,11 @@ const register = async (req, res, next) => {
     if (req.file) {
       try {
         const result = await cloudinary.v2.uploader.upload(req.file.path, {
-          folder: lms,
+          folder: 'lms',
           width: 250,
           height: 250,
           gravity: "faces",
-          crop: fill,
+          crop: 'fill',
         });
         if (result) {
           user.avatar.public_id = result.public_id;
@@ -244,7 +247,7 @@ const updateProfile = async (req, res, next) => {
     await cloudinary.v2.uploader.destroy(user.avatar.public_id);
     try {
       const result = await cloudinary.v2.uploader.upload(req.file.path, {
-        folder: lms,
+        folder: "lms",
         width: 250,
         height: 250,
         gravity: "faces",

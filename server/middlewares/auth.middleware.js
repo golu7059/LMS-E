@@ -31,24 +31,24 @@ const isLoggedIn = async (req, res, next) => {
   }
 };
 
-const authorizedRoles = (...roles) => async (req, res, next) => {
-  const currentUserRole = req.user.role;
-  if (!roles.includes(currentUserRole)) {
-    return next(new AppError("You don't have access for this !", 400))
-  }
+const authorizedRoles =
+  (...roles) =>
+    async (req, res, next) => {
+      const currentUserRole = req.user.role;
+      if (!roles.includes(currentUserRole)) {
+        return next(new AppError("You don't have access for this !", 400));
+      }
 
-  next();
-}
+      next();
+    };
 
 const authorizedSubscriber = async (req, res, next) => {
   const subscription = req.user.subscription;
-  const currentUserRole = req.user.role
-  if (currentUserRole !== "ADMIN" && subscription.status !== 'active') {
-    return next(new AppError("You don't have access for this ! Please subscribe", 400))
+  const currentUserRole = req.user.role;
+  if (currentUserRole !== "ADMIN" && subscription.status !== "active") {
+    return next(
+      new AppError("You don't have access for this ! Please subscribe", 400)
+    );
   }
-}
-export {
-  isLoggedIn,
-  authorizedRoles,
-  authorizedSubscriber
-}
+};
+export { isLoggedIn, authorizedRoles, authorizedSubscriber };

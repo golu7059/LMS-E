@@ -11,6 +11,7 @@ cloudinary.v2.config({
     api_secret : process.env.CLOUDINARY_API_SECRET
 })
 
+// Razorpay configuration
 export const razorpay = new Razorpay({
     key_id : process.env.CLOUDINARY_API_KEY,
     key_secret : process.env.CLOUDINARY_API_SECRET
